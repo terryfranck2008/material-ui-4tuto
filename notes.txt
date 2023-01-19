@@ -1,0 +1,68 @@
+RESPONSIVE DESIGN
+
+Best Practices
+- Relative Units: This automatically resizing elements depending on the screens that they're on and ensures a consistent
+look accross devices. Examples of units: %, em, rem, vh (viewport height and it's based on the height of the device),
+vw (viewport width based on the width of the device)
+1. em - static responsive unit based on parent element font size. If parent element fontSize: 8px then child element 1em = 8px.
+
+Because 'em' units don't always refer to the same value (if you change one element's fontSize then its children will have a different em value) I have actually started avoiding their use.
+
+2. rem - static responsive unit based on page font size. If HTML fontSize: 8px then 1rem = 8px.
+
+'rem' units always refer to the page font size. This means it will always provide a consistent value wherever used in your application. This has made 'rem' my unit of choice for almost 
+all values: fontSize, margin, padding, width/height, etc.Use 'rem' when you want to define an explicit value, 
+like width: 5rem. This will compute a fixed px value corresponding to 5 * page fontSize, so as you change the size of the window the width will not change, however what makes it responsive
+is when it is loaded on smaller screens the value computed will be proportional.
+
+3. % -  fluid responsive unit based on parent element dimensions. This value constantly changes the underlying px value returned to maintain the specified percentage. As the screen size changes this unit changes in realtime maintaining proportions.
+
+You want to use '%' when you want the value to change in realtime as the size of the window changes. So a width: 100% will always span the entire width of the available space, regardless of actual px values. This allows you to define fluid elements with relative sizes.
+
+4. px - standard fixed unit. Other units calculate and return respective px values.  1px = 1/96th of 1in
+
+The 'px' unit should only be used when you want a very explicit value regardless of screen size. This can sometimes be helpful for spacing certain items, but in practice, I try to avoid it and use 'rem' instead.
+
+- Media Queries: Material UI makes extensive use of it by using React hooks that makes it really convenient to use media queries
+not only in our js styles but also within our javascript itself.
+
+- Grid System: it's use for laying out the content on our page and then telling that content how to resize or reorder itself
+based on diffferent screen sizes.It also realy standardizes alignment and makes it really easy to create a consistent and 
+cohesive feel to your application.
+
+- Testing, testing and testing
+
+Goals
+- Looks perfect on all screen sizes
+- Orientation independent
+- Resizable
+
+DRAWERS
+also known as side panels are essentially pages that are anchored off screen either to the left or right, top or bottom
+that can be brought on screen when a certain button is pressed or action is completed, to then display a list of further options
+or information. We'll be using the draw component to display the different tabs for our website on smaller screens.
+For the content of the drawer, we'll use the List component.
+
+LISTS
+
+Grid
+The grid creates visual consistency between layouts while allowing flexibility across a wide variety of designs.
+Material Design’s responsive UI is based on a 12-column grid layout.
+The grid system is implemented with the Grid component:
+
+- It uses CSS’s Flexible Box module for high flexibility.
+- There are two types of layout: containers and items.
+- Item widths are set in percentages, so they’re always fluid and sized relative to their parent element.
+- Items have padding to create the spacing between individual items.
+- There are five grid breakpoints: xs, sm, md, lg, and xl.
+The responsive grid focuses on consistent spacing widths, rather than column width. Material Design margins and columns 
+follow an 8px square baseline grid. The spacing property is an integer between 0 and 10 inclusive. 
+By default, the spacing between two grid items follows a linear function: output(spacing) = spacing * 8px, e.g. spacing={2} creates a 16px wide gap.
+
+By default, grid items are displayed horizontally. There are 2 mains directions for displayed items:
+row: items are displayed from left to right so horizontally (with row-reverse)
+column: items are displayed from top to bottom so vertically (with column-reverse)
+We can also control where items should stay wherever there are in a row o column. This is related to axis where items stays on.
+Axis depend on the direction. For example: if direction is row => justifyContent we move items horizontally but alignItems will move items vertically. if column => justifyContent will will move items vertically but alignItems will move items horizontally.
+justifyContent values are: flex-start, center, flex-end, space-between,space-around,space-evenly
+alignItems values are: flex-start, center, flex-end, stretch, baseline
